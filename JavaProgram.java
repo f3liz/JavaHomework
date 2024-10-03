@@ -1,6 +1,8 @@
 package JavaHomework;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -12,9 +14,9 @@ public class JavaProgram {
   public static void main(String[] args) {
     JavaProgram program = new JavaProgram();
 
-  
     program.infoCollector();
 
+    program.displayInfo();
   }
 
   private void infoCollector() {
@@ -39,5 +41,20 @@ public class JavaProgram {
     scanner.close();
   }
 
-  
+  private void displayInfo() {
+    if (names.size() != ids.size()) {
+      System.out.println("Error, number of student names does not match number of student ids");
+    }
+
+    Map<String, String> studentInfo = new HashMap<>();
+
+    for (int i = 0; i < names.size(); i++) {
+      studentInfo.put(names.get(i), ids.get(i));
+    }
+
+    System.out.println("Student Names - Student ID");
+    for(Map.Entry<String, String> entry: studentInfo.entrySet()) {
+      System.out.println("Student Name:" + entry.getKey() + " - Student ID:" + entry.getValue());
+    }
+  }
 }
